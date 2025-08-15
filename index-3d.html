@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Doğan – 3D Interactive Experience</title>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.0/dist/gsap.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --background: #0a0b0d;
+            --surface: #121318;
+            --text: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            overflow: hidden;
+            background: var(--background);
+        }
+        
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .ui-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 11, 13, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            pointer-events: auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 11, 13, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            pointer-events: auto;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .explore-prompt {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading 3D Experience...</div>
+        <div class="progress-bar">
+            <div class="progress" id="loadingProgress"></div>
+        </div>
+    </div>
+    
+    <!-- Three.js Container -->
+    <div id="webgl-container"></div>
+    
+    <!-- UI Overlay -->
+    <div class="ui-overlay">
+        <header class="header">
+            <a href="#" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>Ahmet Doğan</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link active">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#expertise" class="nav-link">Expertise</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="hero-content">
+                <h1 class="hero-title">Ahmet Doğan</h1>
+                <p class="hero-subtitle">ICT Executive & Digital Transformation Leader with 20+ years of experience driving large-scale digital transformation and infrastructure projects across the Middle East.</p>
+                <a href="#explore" class="cta-button" id="exploreButton">
+                    <i class="fas fa-rocket"></i> Explore My Journey
+                </a>
+            </div>
+        </main>
+        
+        <div class="explore-prompt">
+            <span>Scroll or use arrow keys to navigate</span>
+            <i class="fas fa-arrow-down"></i>
+        </div>
+    </div>
+    
+    <script>
+        // Main Three.js application
+        class ThreeJSApp {
+            constructor() {
+                this.container = document.getElementById('webgl-container');
+                this.loadingScreen = document.getElementById('loadingScreen');
+                this.loadingProgress = document.getElementById('loadingProgress');
+                this.exploreButton = document.getElementById('exploreButton');
+                
+                // Scene setup
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                
+                // Camera position
+                this.camera.position.z = 5;
+                
+                // Lighting
+                this.ambientLight = new THREE.AmbientLight(0x404040);
+                this.scene.add(this.ambientLight);
+                
+                this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                this.directionalLight.position.set(1, 1, 1);
+                this.scene.add(this.directionalLight);
+                
+                // Add some 3D objects
+                this.createEnvironment();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => this.onWindowResize());
+                
+                // Start loading assets
+                this.loadAssets();
+            }
+            
+            createEnvironment() {
+                // Create a simple 3D environment
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0x00ff00,
+                    shininess: 100,
+                    specular: 0x111111
+                });
+                
+                this.cube = new THREE.Mesh(geometry, material);
+                this.scene.add(this.cube);
+                
+                // Add some floating particles
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particlesCount = 5000;
+                
+                const posArray = new Float32Array(particlesCount * 3);
+                
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 10;
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.005,
+                    color: 0x6366f1,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                this.particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                this.scene.add(this.particlesMesh);
+            }
+            
+            loadAssets() {
+                // Simulate loading assets
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 5;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        this.onAssetsLoaded();
+                    }
+                    this.updateLoadingProgress(progress);
+                }, 100);
+            }
+            
+            updateLoadingProgress(progress) {
+                this.loadingProgress.style.width = `${progress}%`;
+            }
+            
+            onAssetsLoaded() {
+                // Fade out loading screen
+                this.loadingScreen.style.opacity = '0';
+                
+                // Remove loading screen after fade out
+                setTimeout(() => {
+                    this.loadingScreen.style.display = 'none';
+                    this.init();
+                }, 500);
+                
+                // Enable explore button
+                this.exploreButton.addEventListener('click', () => this.startExperience());
+            }
+            
+            init() {
+                // Setup renderer
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                this.container.appendChild(this.renderer.domElement);
+                
+                // Start animation loop
+                this.animate();
+            }
+            
+            startExperience() {
+                // Start the main 3D experience
+                console.log('Starting 3D experience...');
+                
+                // Example animation
+                gsap.to(this.camera.position, {
+                    z: 10,
+                    duration: 2,
+                    ease: 'power2.inOut'
+                });
+            }
+            
+            onWindowResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+            
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                
+                // Rotate cube
+                if (this.cube) {
+                    this.cube.rotation.x += 0.01;
+                    this.cube.rotation.y += 0.01;
+                }
+                
+                // Rotate particles
+                if (this.particlesMesh) {
+                    this.particlesMesh.rotation.y += 0.0005;
+                }
+                
+                this.renderer.render(this.scene, this.camera);
+            }
+        }
+        
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new ThreeJSApp();
+            
+            // Make app globally available for debugging
+            window.app = app;
+        });
+    </script>
+</body>
+</html>

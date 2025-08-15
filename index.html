@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Doğan - ICT Executive & Digital Transformation Leader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/enhanced-style.css">
+    <!-- Advanced JS Widgets & AI Agent Integration (local references) -->
+    <script src="js/advanced-ai-agent.js" defer></script>
+    <script src="js/ai-assistant.js" defer></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --secondary-dark: #7c3aed;
+            --background: #0a0b0d;
+            --surface: #121318;
+            --surface-light: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-tertiary: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+        
+        .dynamic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            background: rgba(10, 11, 13, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .header:hover {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Standard alternative to text-fill-color */
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .header-logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Standard alternative to text-fill-color */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .header-logo:hover::before {
+            opacity: 1;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .hero {
+            padding: 180px 0 60px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/snigelhjalm/forced-steel/main/grid-bg.svg');
+            background-size: 24px 24px;
+            opacity: 0.4;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+            background: linear-gradient(90deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Standard alternative to text-fill-color */
+            background-size: 200% 100%;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        .hero.loaded h1 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 64px;
+            }
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+            position: relative;
+        }
+        
+        .hero.loaded p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero p strong {
+            color: var(--text);
+            position: relative;
+        }
+        
+        .hero p strong::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.5s ease;
+        }
+        
+        .hero p:hover strong::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .tech-illustration {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .expertise-card {
+            background: linear-gradient(to bottom right, var(--surface), var(--surface-light));
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-hover-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 11, 13, 0.95) 0%, rgba(10, 11, 13, 0.8) 100%);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+            opacity: 0;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid var(--primary);
+            z-index: 10;
+        }
+        
+        .expertise-card:hover .card-hover-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .card-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+        
+        .card-stat-item {
+            text-align: center;
+        }
+        
+        .card-stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            display: block;
+            color: var(--primary);
+        }
+        
+        .card-stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        .card-details {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 12px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        
+        .detail-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .detail-list li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        
+        .detail-list li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .js-tilt {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .expertise-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .expertise-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: white;
+        }
+
+        /* 7D Simulation Styles */
+        .simulation {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, var(--background), rgba(10, 11, 13, 0.95));
+        }
+        
+        .simulation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .section-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .dimension-toggle, .matrix-view, .impact-filter, .time-button {
+            background: var(--surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dimension-toggle:hover, .matrix-view:hover, .impact-filter:hover, .time-button:hover {
+            background: var(--surface-light);
+            color: var(--text);
+            border-color: var(--primary);
+        }
+        
+        .dimension-toggle.active, .matrix-view.active, .impact-filter.active, .time-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+        }
+        
+        .simulation-viewport {
+            margin-top: 40px;
+            min-height: 600px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .dimension-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+            perspective: 1000px;
+        }
+        
+        .dimension-layer.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .interactive-dashboard {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, var(--surface), var(--surface-light));
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .metric-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .metric-value {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .metric-trend {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .metric-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(18, 19, 24, 0.95);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+            border-top: 1px solid var(--primary);
+        }
+        
+        .metric-card:hover .metric-details {
+            transform: translateY(0);
+        }
+        
+        .metric-chart {
+            height: 120px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .metric-image {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .metric-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .metric-highlight {
+            padding: 10px;
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .timeline-explorer {
+            display: flex;
+            gap: 30px;
+            min-height: 500px;
+        }
+        
+        .timeline-nav {
+            flex: 0 0 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .timeline-year {
+            padding: 12px;
+            background: var(--surface);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .timeline-year.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .timeline-content {
+            flex: 1;
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        .highlight-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 20px 0;
+        }
+        
+        .highlight-item {
+            flex: 1 1 200px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 10px;
+        }
+        
+        .highlight-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--primary);
+        }
+        
+        .skills-matrix {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        .matrix-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .matrix-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .matrix-canvas {
+            flex: 1 1 400px;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .matrix-legend {
+            flex: 0 0 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-self: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        
+        .project-impact {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        .impact-filters {
+            margin: 24px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .impact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .impact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .impact-value {
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .impact-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .impact-metric {
+            flex: 1 1 80px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .impact-metric-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .impact-metric-value {
+            font-weight: 600;
+        }
+        
+        .global-reach {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        .map-container {
+            position: relative;
+            height: 500px;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        #map-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            z-index: 2;
+            max-width: 300px;
+        }
+        
+        .map-region {
+            background: rgba(18, 19, 24, 0.95);
+            border-radius: 10px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary);
+        }
+        
+        .region-stats {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        
+        .region-stat {
+            flex: 1;
+        }
+        
+        .region-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .region-stat-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .interactive-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .interactive-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .interactive-title:hover::after {
+            width: 100%;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            /* 7D Simulation Mobile Styles */
+            .dimension-toggle, .matrix-view, .impact-filter, .time-button {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .timeline-explorer {
+                flex-direction: column;
+            }
+            
+            .timeline-nav {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .timeline-year {
+                flex: 0 0 auto;
+                min-width: 80px;
+            }
+            
+            .matrix-container {
+                flex-direction: column;
+            }
+            
+            .matrix-canvas {
+                height: 300px;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .map-overlay {
+                max-width: 100%;
+                left: 10px;
+                right: 10px;
+            }
+            
+            .section-controls {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+            }
+            
+            .dimension-toggle {
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                Ahmet Doğan
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ahmet Doğan - ICT Executive & Digital Transformation Leader</h1>
+                <p>Visionary ICT leader with 20+ years of experience driving large-scale digital transformation and infrastructure projects across the Middle East (Saudi Arabia, Kuwait, Turkey, Egypt). Currently <strong>Sales Director at Abdullah Fouad Group - InfoTech Division</strong> (Jan 2025 - Present) leading nationwide ICT sales with full P&L accountability. Proven track record of turning around underperforming operations - delivered up to <strong>5× profit increase and SAR 125M+ in new contracts</strong> within a year. One of the most highly certified ICT executives globally (DBA candidate, MBA, PgMP, PMP, CISM, CISA, CRISC), combining deep technical expertise with strategic business acumen. <strong>Saudi Premium Residency holder</strong> enabling hassle-free hiring and engagement across KSA.</p>
+                <a href="#contact" class="cta-button">Get Started →</a>
+            </div>
+            <div class="hero-visual">
+                <div class="tech-showcase">
+                    <div class="ai-visualization">
+                        <div class="ai-core">
+                            <div class="ai-ring ai-ring-1"></div>
+                            <div class="ai-ring ai-ring-2"></div>
+                            <div class="ai-ring ai-ring-3"></div>
+                            <div class="ai-center">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                        </div>
+                        <div class="data-nodes">
+                            <div class="node node-1"><i class="fas fa-microchip"></i></div>
+                            <div class="node node-2"><i class="fas fa-network-wired"></i></div>
+                            <div class="node node-3"><i class="fas fa-shield-alt"></i></div>
+                            <div class="node node-4"><i class="fas fa-cloud"></i></div>
+                        </div>
+                    </div>
+                    <div class="tech-title">Elite AI-Powered ICT Leadership</div>
+                    <div class="tech-subtitle">Vision 2030 • Smart Cities • Cybersecurity • Digital Transformation</div>
+                </div>
+                <div class="floating-stats">
+                    <strong>$125M+</strong>
+                    <small>Contracts Secured</small>
+                </div>
+                <div class="floating-stats">
+                    <strong>5× Growth</strong>
+                    <small>Profit Increase</small>
+                </div>
+                <div class="floating-stats">
+                    <strong>130+</strong>
+                    <small>Team Members Led</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Stats Section -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2 class="interactive-title">Elite Performance Metrics</h2>
+                <p>Proven executive achievements with measurable impact</p>
+                <div class="section-controls">
+                    <button class="view-mode-toggle" data-mode="grid">Grid View</button>
+                    <button class="view-mode-toggle" data-mode="chart">Chart View</button>
+                </div>
+                <p>Proven track record of delivering exceptional results across large-scale digital transformation initiatives</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>SAR 125M</h3>
+                    <p>Contracts Secured in 2024</p>
+                </div>
+                <div class="stat-item">
+                    <h3>SAR 110M</h3>
+                    <p>Collections Achieved</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5×</h3>
+                    <p>Profit Increase YoY</p>
+                </div>
+                <div class="stat-item">
+                    <h3>130+</h3>
+                    <p>Team Members Led</p>
+                </div>
+                <div class="stat-item">
+                    <h3>SAR 21.9M</h3>
+                    <p>NEOM Data Center Project</p>
+                </div>
+                <div class="stat-item">
+                    <h3>$18M/Year</h3>
+                    <p>ICT Division Built from Scratch</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25%</h3>
+                    <p>Pipeline Increase at Ingram Micro</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20%</h3>
+                    <p>Delivery Time Improvement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Timeline -->
+    <section class="experience" id="experience">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Professional Experience Timeline</h2>
+                <p>20+ years of progressive leadership across the Middle East</p>
+            </div>
+            <div class="timeline" style="position: relative; max-width: 1000px; margin: 0 auto;">
+                <div class="timeline-item" style="margin-bottom: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: #6366f1; font-weight: 600; font-size: 14px; margin-bottom: 8px;">Jan 2025 - Present</div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Sales Director</h3>
+                    <h4 style="font-size: 16px; font-weight: 600; color: #6366f1; margin-bottom: 12px;">Abdullah Fouad Group - InfoTech Division</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Leading nationwide ICT sales and operations across all regions, with full P&L accountability. Driving revenue optimization in government, telecom, and enterprise sectors. Managing and coaching cross-functional teams to sustain post-turnaround growth momentum.</p>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: #6366f1; font-weight: 600; font-size: 14px; margin-bottom: 8px;">Jan 2023 - Dec 2024</div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Regional Manager, Western Region</h3>
+                    <h4 style="font-size: 16px; font-weight: 600; color: #6366f1; margin-bottom: 12px;">Abdullah Fouad Group - InfoTech Division</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Turnaround leader for underperforming region. Achieved record results in 2024: SAR 125M in new contracts, SAR 110M in collections, making Western Region the top-performing unit nationwide. Rebuilt sales team and expanded market footprint to Riyadh, Mecca, Medina, Eastern Province, Tabuk, and Jazan.</p>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: #6366f1; font-weight: 600; font-size: 14px; margin-bottom: 8px;">Sep 2021 - Dec 2022</div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Senior Product Manager, Oracle Solutions</h3>
+                    <h4 style="font-size: 16px; font-weight: 600; color: #6366f1; margin-bottom: 12px;">Ingram Micro KSA</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Managed Oracle solutions portfolio nationwide. Maintained Ingram Micro as Oracle's #1 distributor in KSA. Expanded reseller network and grew sales pipeline by 25% through strategic partner enablement and co-marketing initiatives.</p>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: #6366f1; font-weight: 600; font-size: 14px; margin-bottom: 8px;">Jan 2017 - Aug 2022</div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">General Manager, ICT Division</h3>
+                    <h4 style="font-size: 16px; font-weight: 600; color: #6366f1; margin-bottom: 12px;">Gulf Group Holding, Kuwait/Saudi</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Launched and built ICT business unit from ground up. Grew annual revenue to ~$18M with 50+ projects in data centers, cybersecurity, and telecom. Led team of 130+, established PMO, improved delivery times by 20%. Delivered NEOM Telco Park and government defense projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Elite ICT Leadership Expertise</h2>
+                <p>Comprehensive digital transformation solutions across multiple domains with proven track record</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏙️</div>
+                    <h3>Smart Cities & Vision 2030</h3>
+                    <p>Led NEOM Smart City Tier III Data Center delivery (SAR 21.9M). Expert in IoT/Cloud solutions aligned with Vision 2030 goals. Certified by Uptime Institute for flagship smart city infrastructure.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🛡️</div>
+                    <h3>Cybersecurity & Risk Management</h3>
+                    <p>CISA, CISM, CRISC certified. DBA candidate in Cybersecurity. Ensuring NCA compliance and cybersecurity standards for government and enterprise projects across KSA.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏢</div>
+                    <h3>Data Center Infrastructure</h3>
+                    <p>Tier III+ Data Center design and delivery. RCDD, ATD certified. Delivered critical infrastructure for NEOM Telco Park and government defense projects.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
+                    <h3>Program Management Excellence</h3>
+                    <p>PgMP, PMP, PMI-ACP, PRINCE2 certified. Led 130+ teams, established PMOs, delivered $18M/year ICT division from scratch with 30% annual growth.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🌐</div>
+                    <h3>Telecom & Network Solutions</h3>
+                    <p>B.Eng. Electronics & Communications. Nationwide fiber and mobile network expansions, 5G implementations. Strategic partnerships with Huawei, Oracle, Schneider Electric.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📈</div>
+                    <h3>Digital Transformation Leadership</h3>
+                    <p>MBA Marketing, Regional Manager at Abdullah Fouad Group. Turned underperforming Western Region to #1 nationwide with 5× profit increase and $125M+ contracts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Elite Certifications -->
+    <section class="education" id="education">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Education & Elite Certifications</h2>
+                <p>One of the most highly certified ICT executives globally</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎓</div>
+                    <h3>Doctor of Business Administration (DBA)</h3>
+                    <p><strong>University of Northampton, UK (2022-2025)</strong><br>
+                    Candidate, specialization in Cybersecurity. Currently enrolled in a Doctoral of Business Administration program with focus on cybersecurity leadership and digital transformation.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎓</div>
+                    <h3>Master of Business Administration (MBA)</h3>
+                    <p><strong>University of Leicester, UK (2019-2021)</strong><br>
+                    Marketing Specialization - AMBA Accredited. MBA Project: "The Impact of Internet of Things on consumer preferences and Behavior" (18,000 words).</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎓</div>
+                    <h3>B.Eng. Electronics & Communications</h3>
+                    <p><strong>Menoufia University, Egypt (1999-2004)</strong><br>
+                    WES Canada Accredited. Strong foundation in network engineering and telecommunications systems.</p>
+                </div>
+                <div class="expertise-card js-tilt" data-tilt-glare data-tilt-max-glare="0.3">
+                    <div class="expertise-icon">🏅</div>
+                    <h3>Program Management Professional (PgMP®)</h3>
+                    <p><strong>Project Management Institute (2023-2026)</strong><br>
+                    Elite certification for program management leadership. Skills: Project Management, Team Management, C-Level Presentations, Management Consulting.</p>
+                    <div class="card-hover-content">
+                        <div class="card-stats">
+                            <div class="card-stat-item">
+                                <span class="card-stat-value">Top 2%</span>
+                                <span class="card-stat-label">Global Achievement</span>
+                            </div>
+                            <div class="card-stat-item">
+                                <span class="card-stat-value">4</span>
+                                <span class="card-stat-label">Core Domains</span>
+                            </div>
+                        </div>
+                        <div class="card-details">
+                            <span class="detail-label">Key Focus Areas:</span>
+                            <ul class="detail-list">
+                                <li>Strategic Program Alignment</li>
+                                <li>Stakeholder Engagement</li>
+                                <li>Governance Systems</li>
+                                <li>Benefits Realization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="expertise-card js-tilt" data-tilt-glare data-tilt-max-glare="0.3">
+                    <div class="expertise-icon">🛡️</div>
+                    <h3>CISA® & CISM® & CRISC®</h3>
+                    <p><strong>ISACA (2020-2024)</strong><br>
+                    Triple certification in Information Systems Auditing, Security Management, and Risk Control. Credential ID: 2054760.</p>
+                    <div class="card-hover-content">
+                        <div class="card-stats">
+                            <div class="card-stat-item">
+                                <span class="card-stat-value">3</span>
+                                <span class="card-stat-label">Elite Certifications</span>
+                            </div>
+                            <div class="card-stat-item">
+                                <span class="card-stat-value">Top 5%</span>
+                                <span class="card-stat-label">Industry Standing</span>
+                            </div>
+                        </div>
+                        <div class="card-details">
+                            <span class="detail-label">Combined Expertise:</span>
+                            <ul class="detail-list">
+                                <li>Enterprise IT Governance</li>
+                                <li>Information Security Management</li>
+                                <li>Risk Management & Controls</li>
+                                <li>Cybersecurity Leadership</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏢</div>
+                    <h3>RCDD & ATD Data Center Certifications</h3>
+                    <p><strong>BICSI & Uptime Institute</strong><br>
+                    Registered Communications Distribution Designer and Accredited Tier Designer for critical data center infrastructure projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Organizations & Memberships -->
+    <section class="organizations" id="organizations">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Professional Organizations & Memberships</h2>
+                <p>Active member of leading professional engineering and management institutes</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>Saudi Engineering Syndicate</h3>
+                    <p>Membership (Aug 2016 - Present)<br>Licensed Consultant Engineer (Electronics & Communication) with Saudi Council of Engineers</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>Project Management Institute (PMI)</h3>
+                    <p>Member (Nov 2009 - Present)<br>Global professional association for project management excellence</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>Chartered Management Institute</h3>
+                    <p>Chartered Manager (CMgr MCMI)<br>UK's leading professional body for management and leadership</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>ISACA</h3>
+                    <p>Member - Information Systems Audit and Control Association<br>Global professional association for IT governance and cybersecurity</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>Egyptian Society of Quality</h3>
+                    <p>Member (Nov 2010 - Present)<br>Professional association for quality management and excellence</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏛️</div>
+                    <h3>Arab Engineering Syndicate</h3>
+                    <p>Engineer (Jan 2016 - Present)<br>Regional engineering professional body across Arab nations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Recommendations -->
+    <section class="recommendations" id="recommendations">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Professional Recommendations</h2>
+                <p>Testimonials from colleagues, clients, and industry leaders</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px;">FA</div>
+                        <div>
+                            <h4 style="font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px;">Fadi Al-Farra</h4>
+                            <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">Divisional General Manager at Bader Al Mulla & Bros.</p>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-style: italic;">"Ahmed is an icon of enthusiasm and perseverance. I had the pleasure of working closely with him on a challenging period and critical market situation. His exceptional problem-solving skills and attention to detail were instrumental in its success."</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px;">IH</div>
+                        <div>
+                            <h4 style="font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px;">Izzeldeen Humouda</h4>
+                            <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">IT Planning Engineer at KOC</p>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-style: italic;">"It is a pleasure to work closely with Mr. Ahmed. He is professional, supportive, proficient in problem-solving, punctual, and dedicated. His energy and attention to detail are commendable. He has excellent business market vision and goal-oriented mindset."</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px;">WZ</div>
+                        <div>
+                            <h4 style="font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px;">Wassim Zoueihed</h4>
+                            <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">Tech Leader | Digital Transformation | EMBA at HEC Paris</p>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-style: italic;">"I had the pleasure to work with Ahmed on some of Huawei's key projects in Kuwait. I saw him as a leader in his domain, true customer centric and dedicated to long term relationships. He was always clear in his understanding of the clients' needs."</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px;">IR</div>
+                        <div>
+                            <h4 style="font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px;">Iman Radwan</h4>
+                            <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">Project Manager - Huawei Enterprise Kuwait</p>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-style: italic;">"Ahmed consistently demonstrated exceptional leadership and profound understanding of the market and Huawei vendors in the ELV field. He possesses impressive ability to strategize and execute complex initiatives, particularly in the KNG Kazmah project."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <p>&copy; 2025 Ahmet Doğan. ICT Executive & Digital Transformation Leader</p>
+            <div class="contact-info">
+                <a href="mailto:ahmet.dogan@doganhub.com">ahmet.dogan@doganhub.com</a>
+                <a href="tel:+966500666084">+966-500-666-084</a>
+                <a href="https://linkedin.com/in/ahmed-elgazzar-ict">LinkedIn Profile</a>
+                <span>Riyadh, Saudi Arabia</span>
+            </div>
+        </div>
+    </footer>
+    <!-- Interactive Scripts for 7D Experience -->
+    <script>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize hero animations
+            const hero = document.querySelector('.hero');
+            setTimeout(() => {
+                hero.classList.add('loaded');
+            }, 100);
+            
+            // Initialize 3D tilt effects on cards
+            if (typeof VanillaTilt !== 'undefined') {
+                VanillaTilt.init(document.querySelectorAll('.js-tilt'), {
+                    max: 15,
+                    speed: 400,
+                    glare: true,
+                    'max-glare': 0.3
+                });
+            }
+            
+            // Initialize particles background
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: '#6366f1' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.5, random: false },
+                        size: { value: 3, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: '#8b5cf6',
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: 'none',
+                            random: false,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        },
+                        modes: {
+                            grab: { distance: 140, line_linked: { opacity: 1 } },
+                            push: { particles_nb: 4 }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+            
+            // Initialize stat counters with animation
+            const statValues = document.querySelectorAll('.stat-value');
+            if (statValues.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const value = parseInt(target.getAttribute('data-value'));
+                            animateValue(target, 0, value, 1500);
+                            observer.unobserve(target);
+                        }
+                    });
+                }, {threshold: 0.5});
+                
+                statValues.forEach(stat => observer.observe(stat));
+            }
+            
+            // Animate number counting
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    obj.innerHTML = value;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // Initialize 3D scene for hero background
+            initThreeScene();
+            
+            // Mode switchers for different views
+            document.querySelectorAll('.view-mode-toggle').forEach(button => {
+                button.addEventListener('click', function() {
+                    const mode = this.getAttribute('data-mode');
+                    const parent = this.closest('section');
+                    
+                    // Remove all view mode classes
+                    parent.classList.remove('grid-view', 'chart-view');
+                    
+                    // Add selected view mode class
+                    parent.classList.add(mode + '-view');
+                    
+                    // Update active button
+                    document.querySelectorAll('.view-mode-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // Set default view modes
+            document.querySelectorAll('.view-mode-toggle[data-mode="grid"]').forEach(btn => {
+                btn.click();
+            });
+            
+            // Initialize interactive cards with reveal on hover
+            const cards = document.querySelectorAll('.expertise-card, .stat-item');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const content = this.querySelector('.stat-hover-content, .card-hover-content');
+                    if (content) {
+                        content.style.opacity = 1;
+                        content.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const content = this.querySelector('.stat-hover-content, .card-hover-content');
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = 'translateY(10px)';
+                    }
+                });
+            });
+        });
+        
+        // Three.js background scene
+        function initThreeScene() {
+            if (typeof THREE === 'undefined') return;
+            
+            // Create container for the scene
+            const container = document.createElement('div');
+            container.id = 'particles-js';
+            container.classList.add('dynamic-background');
+            document.body.prepend(container);
+            
+            // Setup Three.js scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            
+            // Create a grid
+            const size = 30;
+            const divisions = 30;
+            const gridHelper = new THREE.GridHelper(size, divisions, 0x6366f1, 0x8b5cf6);
+            scene.add(gridHelper);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0x6366f1, 1);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+            
+            // Position camera
+            camera.position.z = 15;
+            camera.position.y = 5;
+            camera.lookAt(0, 0, 0);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate grid
+                gridHelper.rotation.y += 0.002;
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle window resize
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+            
+            window.addEventListener('resize', onWindowResize, false);
+            
+            // Start animation loop
+            animate();
+        }
+        
+        // Initialize 7D Simulation interactions
+        function init7DSimulation() {
+            // Load Chart.js dynamically for radar charts
+            const chartScript = document.createElement('script');
+            chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
+            chartScript.onload = initializeCharts;
+            document.head.appendChild(chartScript);
+            
+            // Dimension toggles
+            const dimensionToggles = document.querySelectorAll('.dimension-toggle');
+            dimensionToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    // Remove active class from all toggles
+                    dimensionToggles.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked toggle
+                    this.classList.add('active');
+                    
+                    // Get dimension number
+                    const dimension = this.getAttribute('data-dimension');
+                    
+                    // Hide all dimension layers
+                    document.querySelectorAll('.dimension-layer').forEach(layer => {
+                        layer.classList.remove('active');
+                    });
+                    
+                    // Show selected dimension layer
+                    document.getElementById('dimension-' + dimension).classList.add('active');
+                });
+            });
+            
+            // Time filters for achievement metrics
+            document.querySelectorAll('.time-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all time buttons
+                    document.querySelectorAll('.time-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get time period
+                    const timePeriod = this.getAttribute('data-time');
+                    
+                    // Update metrics based on time period (would connect to real data)
+                    filterMetricsByTimePeriod(timePeriod);
+                });
+            });
+            
+            // Timeline year navigation
+            document.querySelectorAll('.timeline-year').forEach(yearBtn => {
+                yearBtn.addEventListener('click', function() {
+                    // Remove active class from all year buttons
+                    document.querySelectorAll('.timeline-year').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get year
+                    const year = this.getAttribute('data-year');
+                    
+                    // Update timeline content (simulated)
+                    updateTimelineContent(year);
+                });
+            });
+            
+            // Project impact filters
+            document.querySelectorAll('.impact-filter').forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Remove active class from all filters
+                    document.querySelectorAll('.impact-filter').forEach(f => {
+                        f.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked filter
+                    this.classList.add('active');
+                    
+                    // Get filter category
+                    const category = this.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    filterProjects(category);
+                });
+            });
+            
+            // Matrix view controls
+            document.querySelectorAll('.matrix-view').forEach(view => {
+                view.addEventListener('click', function() {
+                    // Remove active class from all views
+                    document.querySelectorAll('.matrix-view').forEach(v => {
+                        v.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked view
+                    this.classList.add('active');
+                    
+                    // Get view type
+                    const viewType = this.getAttribute('data-view');
+                    
+                    // Update chart type
+                    updateMatrixView(viewType);
+                });
+            });
+            
+            // Initialize VanillaTilt on metric cards
+            if (typeof VanillaTilt !== 'undefined') {
+                VanillaTilt.init(document.querySelectorAll('.metric-card.js-tilt'), {
+                    max: 15,
+                    speed: 400,
+                    glare: true,
+                    'max-glare': 0.3,
+                });
+            }
+            
+            // Simulated map initialization (would use libraries like Mapbox or Google Maps)
+            initSimulatedMap();
+        }
+        
+        // Timeline content updates (simulated)
+        function updateTimelineContent(year) {
+            const contentDiv = document.querySelector('.timeline-content');
+            let content = '';
+            
+            // Generate content based on year
+            switch(year) {
+                case '2023':
+                    content = `
+                        <div class="timeline-highlight">
+                            <h3>2023: Elite Achievement Year</h3>
+                            <div class="highlight-metrics">
+                                <div class="highlight-item">
+                                    <span class="highlight-value">PgMP®</span>
+                                    <span class="highlight-desc">Achieved Program Management Professional</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <span class="highlight-value">SAR 47M</span>
+                                    <span class="highlight-desc">New contracts secured</span>
+                                </div>
+                            </div>
+                            <p>Key milestones include achieving the prestigious Program Management Professional certification, leading ICT sales nationwide with full P&L accountability, and securing SAR 47M+ in new contracts.</p>
+                        </div>
+                    `;
+                    break;
+                case '2022':
+                    content = `
+                        <div class="timeline-highlight">
+                            <h3>2022: NEOM Data Center</h3>
+                            <div class="highlight-metrics">
+                                <div class="highlight-item">
+                                    <span class="highlight-value">SAR 21.9M</span>
+                                    <span class="highlight-desc">Tier III Data Center project</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <span class="highlight-value">14 mo</span>
+                                    <span class="highlight-desc">Project timeline</span>
+                                </div>
+                            </div>
+                            <p>Successfully delivered state-of-the-art Tier III Data Center infrastructure for Saudi Arabia's visionary NEOM project, a cornerstone for next-generation Smart City initiatives.</p>
+                        </div>
+                    `;
+                    break;
+                case '2021':
+                    content = `
+                        <div class="timeline-highlight">
+                            <h3>2021: Strategic Growth</h3>
+                            <div class="highlight-metrics">
+                                <div class="highlight-item">
+                                    <span class="highlight-value">5×</span>
+                                    <span class="highlight-desc">Profit growth</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <span class="highlight-value">CISA®</span>
+                                    <span class="highlight-desc">Certification achieved</span>
+                                </div>
+                            </div>
+                            <p>Led strategic initiatives resulting in 5× profit growth. Achieved Certified Information Systems Auditor (CISA®) certification, enhancing cybersecurity governance expertise.</p>
+                        </div>
+                    `;
+                    break;
+                default:
+                    content = `
+                        <div class="timeline-highlight">
+                            <h3>${year}: Professional Development</h3>
+                            <div class="highlight-metrics">
+                                <div class="highlight-item">
+                                    <span class="highlight-value">Key Year</span>
+                                    <span class="highlight-desc">Professional growth</span>
+                                </div>
+                            </div>
+                            <p>Significant professional development achievements and milestone projects.</p>
+                        </div>
+                    `;
+            }
+            
+            // Update content with animation
+            contentDiv.style.opacity = '0';
+            setTimeout(() => {
+                contentDiv.innerHTML = content;
+                contentDiv.style.opacity = '1';
+            }, 300);
+        }
+        
+        // Filter metrics by time period (simulated)
+        function filterMetricsByTimePeriod(period) {
+            // Would connect to real data - this is simulated for demo
+            const metricValues = document.querySelectorAll('.metric-value');
+            
+            // Example of updating one metric based on time filter
+            if (metricValues[0]) {
+                metricValues[0].style.opacity = '0';
+                
+                setTimeout(() => {
+                    switch(period) {
+                        case '2022':
+                            metricValues[0].textContent = '$52M+';
+                            break;
+                        case '2018':
+                            metricValues[0].textContent = '$48M+';
+                            break;
+                        case '2014':
+                            metricValues[0].textContent = '$25M+';
+                            break;
+                        default: // all time
+                            metricValues[0].textContent = '$125M+';
+                    }
+                    metricValues[0].style.opacity = '1';
+                }, 300);
+            }
+        }
+        
+        // Filter project cards
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.impact-card');
+            
+            projects.forEach(project => {
+                if (category === 'all' || project.getAttribute('data-category') === category) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+        
+        // Update matrix visualization view
+        function updateMatrixView(viewType) {
+            // In a real implementation, would switch between chart types
+            // This is simulated for demo purposes
+            console.log(`Switching to ${viewType} view`);
+            
+            // If we had actual Chart.js implementation, would update chart type here
+            if (window.skillsChart) {
+                if (viewType === 'radar') {
+                    window.skillsChart.config.type = 'radar';
+                } else {
+                    window.skillsChart.config.type = 'bar';
+                }
+                window.skillsChart.update();
+            }
+        }
+        
+        // Initialize charts when Chart.js is loaded
+        function initializeCharts() {
+            // Check if Chart.js is loaded and canvas exists
+            if (typeof Chart === 'undefined' || !document.getElementById('skills-radar-chart')) return;
+            
+            // Radar chart for skills
+            const ctx = document.getElementById('skills-radar-chart').getContext('2d');
+            window.skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Digital Transformation',
+                        'Program Management',
+                        'Enterprise Architecture',
+                        'ICT Infrastructure',
+                        'Team Leadership',
+                        'Sales & Business Development',
+                        'Cybersecurity',
+                    ],
+                    datasets: [{
+                        label: 'Expertise Level',
+                        data: [98, 95, 90, 88, 92, 85, 87],
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#8b5cf6',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#8b5cf6'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                color: 'rgba(255, 255, 255, 0.5)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                                                                                                                                                                                                                                                                                                             },
+                            pointLabels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Initialize simulated map (would use real mapping library)
+        function initSimulatedMap() {
+            const mapCanvas = document.getElementById('map-canvas');
+            if (!mapCanvas) return;
+            
+            // Create simulated map background
+            mapCanvas.style.background = 'linear-gradient(45deg, #0a0b0d, #121318)';
+            
+            // Add grid lines to simulate a map
+            for (let i = 0; i < 20; i++) {
+                const horizontalLine = document.createElement('div');
+                horizontalLine.style.position = 'absolute';
+                horizontalLine.style.left = '0';
+                horizontalLine.style.right = '0';
+                horizontalLine.style.height = '1px';
+                horizontalLine.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                horizontalLine.style.top = `${i * 5}%`;
+                mapCanvas.appendChild(horizontalLine);
+                
+                const verticalLine = document.createElement('div');
+                verticalLine.style.position = 'absolute';
+                verticalLine.style.top = '0';
+                verticalLine.style.bottom = '0';
+                verticalLine.style.width = '1px';
+                verticalLine.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                verticalLine.style.left = `${i * 5}%`;
+                mapCanvas.appendChild(verticalLine);
+            }
+            
+            // Add points of interest
+            const locations = [
+                { name: 'Saudi Arabia', x: 55, y: 45, size: 20, color: 'var(--primary)' },
+                { name: 'Kuwait', x: 58, y: 40, size: 10, color: 'var(--secondary)' },
+                { name: 'Egypt', x: 45, y: 48, size: 8, color: 'var(--secondary)' },
+                { name: 'UAE', x: 60, y: 46, size: 6, color: 'var(--secondary)' }
+            ];
+            
+            locations.forEach(loc => {
+                const point = document.createElement('div');
+                point.style.position = 'absolute';
+                point.style.left = `${loc.x}%`;
+                point.style.top = `${loc.y}%`;
+                point.style.width = `${loc.size}px`;
+                point.style.height = `${loc.size}px`;
+                point.style.backgroundColor = loc.color;
+                point.style.borderRadius = '50%';
+                point.style.transform = 'translate(-50%, -50%)';
+                point.style.boxShadow = `0 0 ${loc.size}px ${loc.color}`;
+                point.style.opacity = '0.8';
+                point.title = loc.name;
+                
+                // Pulse animation
+                point.style.animation = 'pulse 2s infinite';
+                
+                mapCanvas.appendChild(point);
+                
+                // Make points interactive
+                point.addEventListener('mouseenter', () => {
+                    document.querySelectorAll('.map-region').forEach(region => {
+                        region.classList.remove('active');
+                    });
+                    
+                    // Would update region info based on location
+                    const regionName = loc.name.toLowerCase().replace(' ', '-');
+                    const regionElement = document.querySelector(`.map-region[data-region="${regionName}"]`);
+                    if (regionElement) {
+                        regionElement.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Initialize 7D simulation when document is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            init7DSimulation();
+        });
+    </script>
+    
+    <!-- 7D Interactive Experience -->
+    <section class="simulation" id="simulation">
+        <div class="simulation-container">
+            <div class="section-title">
+                <h2 class="interactive-title">7D Interactive Experience</h2>
+                <p>Explore my career journey and achievements through an interactive dual-matrix experience</p>
+                <div class="section-controls">
+                    <button class="dimension-toggle active" data-dimension="1">Achievements</button>
+                    <button class="dimension-toggle" data-dimension="2">Timeline</button>
+                    <button class="dimension-toggle" data-dimension="3">Skills Matrix</button>
+                    <button class="dimension-toggle" data-dimension="4">Project Impact</button>
+                    <button class="dimension-toggle" data-dimension="5">Global Reach</button>
+                </div>
+            </div>
+            
+            <div class="simulation-viewport">
+                <div class="dimension-layer active" id="dimension-1">
+                    <div class="interactive-dashboard">
+                        <div class="dashboard-header">
+                            <h3>Key Achievement Metrics</h3>
+                            <div class="time-selector">
+                                <button class="time-button active" data-time="all">All Time</button>
+                                <button class="time-button" data-time="2022">2022-Now</button>
+                                <button class="time-button" data-time="2018">2018-2022</button>
+                                <button class="time-button" data-time="2014">2014-2018</button>
+                            </div>
+                        </div>
+                        <div class="metrics-container">
+                            <div class="metric-card js-tilt">
+                                <div class="metric-value">$125M+</div>
+                                <div class="metric-label">Contracts Secured</div>
+                                <div class="metric-trend">↑ 35% YoY</div>
+                                <div class="metric-details">
+                                    <div class="metric-chart" id="contracts-chart"></div>
+                                    <div class="metric-breakdown">
+                                        <span>Saudi Arabia: 78%</span>
+                                        <span>Kuwait: 15%</span>
+                                        <span>Egypt: 7%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="metric-card js-tilt">
+                                <div class="metric-value">5× Growth</div>
+                                <div class="metric-label">Profit Increase</div>
+                                <div class="metric-trend">↑ 500% Over 2 Years</div>
+                                <div class="metric-details">
+                                    <div class="metric-chart" id="profit-chart"></div>
+                                    <div class="metric-highlight">
+                                        <span>Turned around underperforming divisions through strategic leadership</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="metric-card js-tilt">
+                                <div class="metric-value">130+</div>
+                                <div class="metric-label">Team Members</div>
+                                <div class="metric-trend">→ Across 5 Countries</div>
+                                <div class="metric-details">
+                                    <div class="metric-chart" id="team-chart"></div>
+                                    <div class="metric-breakdown">
+                                        <span>Leadership Development: 25%</span>
+                                        <span>Technical Teams: 60%</span>
+                                        <span>Project Management: 15%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="metric-card js-tilt">
+                                <div class="metric-value">SAR 21.9M</div>
+                                <div class="metric-label">NEOM Data Center</div>
+                                <div class="metric-trend">↑ Tier III Certification</div>
+                                <div class="metric-details">
+                                    <div class="metric-image" style="background-image: url('https://via.placeholder.com/300x150?text=Data+Center')"></div>
+                                    <div class="metric-highlight">
+                                        <span>Delivered critical infrastructure for Smart City initiative</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dimension-layer" id="dimension-2">
+                    <div class="timeline-explorer">
+                        <div class="timeline-nav">
+                            <div class="timeline-year active" data-year="2023">2023</div>
+                            <div class="timeline-year" data-year="2022">2022</div>
+                            <div class="timeline-year" data-year="2021">2021</div>
+                            <div class="timeline-year" data-year="2020">2020</div>
+                            <div class="timeline-year" data-year="2019">2019</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-highlight">
+                                <h3>2023: Elite Achievement Year</h3>
+                                <div class="highlight-metrics">
+                                    <div class="highlight-item">
+                                        <span class="highlight-value">PgMP®</span>
+                                        <span class="highlight-desc">Achieved Program Management Professional</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-value">SAR 47M</span>
+                                        <span class="highlight-desc">New contracts secured</span>
+                                    </div>
+                                </div>
+                                <p>Key milestones include achieving the prestigious Program Management Professional certification, leading ICT sales nationwide with full P&L accountability, and securing SAR 47M+ in new contracts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dimension-layer" id="dimension-3">
+                    <div class="skills-matrix">
+                        <div class="matrix-header">
+                            <h3>Skills Distribution & Proficiency</h3>
+                            <div class="matrix-controls">
+                                <button class="matrix-view active" data-view="radar">Radar View</button>
+                                <button class="matrix-view" data-view="bar">Bar Chart</button>
+                            </div>
+                        </div>
+                        <div class="matrix-container">
+                            <div class="matrix-canvas">
+                                <canvas id="skills-radar-chart" width="400" height="400"></canvas>
+                            </div>
+                            <div class="matrix-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color:rgba(99, 102, 241, 0.7)"></span>
+                                    <span class="legend-label">Technical Leadership</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color:rgba(139, 92, 246, 0.7)"></span>
+                                    <span class="legend-label">Strategic Management</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color:rgba(16, 185, 129, 0.7)"></span>
+                                    <span class="legend-label">Certifications & Expertise</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dimension-layer" id="dimension-4">
+                    <div class="project-impact">
+                        <h3>Project Impact Analysis</h3>
+                        <div class="impact-filters">
+                            <button class="impact-filter active" data-filter="all">All Projects</button>
+                            <button class="impact-filter" data-filter="data-center">Data Centers</button>
+                            <button class="impact-filter" data-filter="smart-city">Smart City</button>
+                            <button class="impact-filter" data-filter="infrastructure">Infrastructure</button>
+                        </div>
+                        <div class="impact-grid">
+                            <div class="impact-card" data-category="data-center">
+                                <div class="impact-header">
+                                    <h4>NEOM Smart City Tier III Data Center</h4>
+                                    <div class="impact-value">SAR 21.9M</div>
+                                </div>
+                                <div class="impact-metrics">
+                                    <div class="impact-metric">
+                                        <span class="impact-metric-label">Timeline</span>
+                                        <span class="impact-metric-value">14 months</span>
+                                    </div>
+                                    <div class="impact-metric">
+                                        <span class="impact-metric-label">Team Size</span>
+                                        <span class="impact-metric-value">24 members</span>
+                                    </div>
+                                    <div class="impact-metric">
+                                        <span class="impact-metric-label">ROI</span>
+                                        <span class="impact-metric-value">2.4× in 3 years</span>
+                                    </div>
+                                </div>
+                                <p>Delivered state-of-the-art Tier III Data Center for Saudi Arabia's visionary NEOM project, providing critical infrastructure for Smart City initiatives.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dimension-layer" id="dimension-5">
+                    <div class="global-reach">
+                        <h3>Global Market Expansion</h3>
+                        <div class="map-container">
+                            <div id="map-canvas"></div>
+                            <div class="map-overlay">
+                                <div class="map-region active" data-region="saudi-arabia">
+                                    <h4>Saudi Arabia</h4>
+                                    <div class="region-stats">
+                                        <div class="region-stat">
+                                            <span class="region-stat-label">Projects</span>
+                                            <span class="region-stat-value">12+</span>
+                                        </div>
+                                        <div class="region-stat">
+                                            <span class="region-stat-label">Revenue</span>
+                                            <span class="region-stat-value">SAR 95M+</span>
+                                        </div>
+                                    </div>
+                                    <p>Primary market with focus on Vision 2030 initiatives, Smart Cities, and critical infrastructure.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarking Mr. Ahmet Doğan's Professional Standing in ICT</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #006c35;
+            --secondary: #00a651;
+            --accent: #f7931e;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --background: #ffffff;
+            --surface: #f8f9fa;
+            --surface-card: #ffffff;
+            --surface-dark: #f1f3f4;
+            --text: #212529;
+            --text-light: #6c757d;
+            --text-muted: #868e96;
+            --border: #dee2e6;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-secondary: Georgia, 'Times New Roman', serif;
+        }
+
+        [data-theme="dark"] {
+            --background: #1a1a1a;
+            --surface: #2d2d2d;
+            --surface-card: #242424;
+            --surface-dark: #1e1e1e;
+            --text: #ffffff;
+            --text-light: #b0b0b0;
+            --text-muted: #888888;
+            --border: #404040;
+            --shadow: rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--surface-card);
+            border-bottom: 2px solid var(--border);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--surface-card);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .benchmark-intro {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+        }
+
+        .benchmark-intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benchmark-intro p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 2px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .certification-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--surface-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+
+        .certification-table th,
+        .certification-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .certification-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .certification-table tr:hover {
+            background: var(--surface);
+        }
+
+        .rarity-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .ultra-rare {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .very-rare {
+            background: #ff8e53;
+            color: white;
+        }
+
+        .rare {
+            background: #feca57;
+            color: #333;
+        }
+
+        .uncommon {
+            background: #48dbfb;
+            color: #333;
+        }
+
+        .common {
+            background: #0abde3;
+            color: white;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--accent) 0%, var(--accent) 100%, transparent 100%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.3s ease;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .highlight.animate {
+            background-size: 100% 100%;
+        }
+
+        .visual-pyramid {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+
+        .pyramid {
+            display: inline-block;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .pyramid-level {
+            width: 300px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            border-radius: 4px;
+            position: relative;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .pyramid-level:nth-child(1) { width: 80px; background: #ff6b6b; }
+        .pyramid-level:nth-child(2) { width: 120px; background: #ff8e53; }
+        .pyramid-level:nth-child(3) { width: 160px; background: #feca57; }
+        .pyramid-level:nth-child(4) { width: 200px; background: #48dbfb; }
+        .pyramid-level:nth-child(5) { width: 240px; background: #0abde3; }
+        .pyramid-level:nth-child(6) { width: 280px; background: var(--primary); }
+
+        .country-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .country-card {
+            background: var(--surface-card);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .country-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .country-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, var(--surface), var(--surface-dark));
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 3rem 0;
+        }
+
+        .references {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-top: 3rem;
+        }
+
+        .references h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .references ul {
+            list-style-position: inside;
+        }
+
+        .references li {
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .benchmark-intro {
+                padding: 2rem;
+            }
+
+            .benchmark-intro h1 {
+                font-size: 2rem;
+            }
+
+            .certification-table {
+                font-size: 0.875rem;
+            }
+
+            .certification-table th,
+            .certification-table td {
+                padding: 0.75rem;
+            }
+
+            .pyramid-level {
+                height: 40px;
+                font-size: 0.875rem;
+            }
+
+            .country-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+            .country-card {
+                background: var(--surface-card);
+                border: 2px solid var(--border);
+                border-radius: var(--radius);
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .country-flag {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .country-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+
+            .conclusion {
+                background: linear-gradient(135deg, var(--surface), var(--surface-dark));
+                border-left: 4px solid var(--primary);
+                padding: 2rem;
+                border-radius: var(--radius);
+                margin: 3rem 0;
+            }
+
+            .references {
+                font-size: 0.875rem;
+                color: var(--text-light);
+                background: var(--surface);
+                padding: 2rem;
+                border-radius: var(--radius);
+                margin-top: 3rem;
+            }
+
+            .references h3 {
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+
+            .references ul {
+                list-style-position: inside;
+            }
+
+            .references li {
+                margin-bottom: 0.5rem;
+            }
+
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0 1rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .card {
+                    padding: 1.5rem;
+                }
+
+                .benchmark-intro {
+                    padding: 2rem;
+                }
+
+                .benchmark-intro h1 {
+                    font-size: 2rem;
+                }
+
+                .certification-table {
+                    font-size: 0.875rem;
+                }
+
+                .certification-table th,
+                .certification-table td {
+                    padding: 0.75rem;
+                }
+
+                .pyramid-level {
+                    height: 40px;
+                    font-size: 0.875rem;
+                }
+
+                .country-comparison {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="index.html" class="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Portfolio
+                    </a>
+                    <h1 class="fs-15 text-primary">
+                        📊 Professional Benchmarking Analysis
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <section class="section">
+                <div class="container">
+                    <div class="benchmark-intro">
+                        <h1 class="fs-24">🏆 Benchmarking Mr. Ahmet Doğan's Professional Standing in ICT</h1>
+                        <p class="fs-18">Independent Analysis of Global ICT Professional Credentials & Market Position</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Overview -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Profile Overview</h2>
+                    
+                    <div class="card">
+                        <p class="fs-11 lh-18 mb-8">
+                            Mr. Ahmet Doğan is an ICT professional with an <strong>exceptionally diverse and rare portfolio of certifications and academic qualifications</strong>. His credentials span information security, IT governance, project/program management, IT service management, and data center infrastructure, combined with advanced degrees in business and engineering.
+                        </p>
+
+                        <h3 class="text-primary mb-6">🎓 Academic Excellence</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-value">DBA</span>
+                                <div class="stat-label">Doctor of Business Administration<br>University of Northampton, UK</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">MBA</span>
+                                <div class="stat-label">Master of Business Administration<br>University of Leicester, UK</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">B.Eng</span>
+                                <div class="stat-label">Electronics & Communications<br>WES Canada Accredited</div>
+                            </div>
+                        </div>
+
+                        <div class="highlight mt-8 p-4 bg-surface-dark rounded">
+                            <p><strong>Academic Distinction:</strong> This blend of technical and business education is uncommon in the ICT field, where only a small fraction of professionals hold doctoral-level qualifications. In Europe, about 80% of ICT professionals have at least a bachelor's degree, but far fewer pursue doctoral degrees. Mr. Doğan's ongoing DBA places him among a very select group of ICT experts with terminal degrees.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Certification Analysis -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Global ICT Certification Landscape</h2>
+                    <p class="section-subtitle">Analysis of Mr. Doğan's credentials against ~62 million ICT professionals worldwide</p>
+
+                    <div class="card">
+                        <h3 class="text-primary mb-8">📊 Certification Rarity Analysis</h3>
+                        
+                        <table class="certification-table">
+                            <thead>
+                                <tr>
+                                    <th>Certification</th>
+                                    <th>Global Holders</th>
+                                    <th>% of 62M ICT Pros</th>
+                                    <th>Rarity Level</th>
+                                    <th>Mr. Doğan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>PgMP (Program Management Professional)</strong></td>
+                                    <td>~5,350 globally</td>
+                                    <td>0.009%</td>
+                                    <td><span class="rarity-badge ultra-rare">Ultra Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ATD/AOS (Data Center)</strong></td>
+                                    <td>Hundreds worldwide</td>
+                                    <td>&lt;0.002%</td>
+                                    <td><span class="rarity-badge ultra-rare">Ultra Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> BOTH</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>RCDD (Data Center Design)</strong></td>
+                                    <td>~15,000 globally</td>
+                                    <td>0.024%</td>
+                                    <td><span class="rarity-badge very-rare">Very Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CRISC (IT Risk)</strong></td>
+                                    <td>~30,000 globally</td>
+                                    <td>0.05%</td>
+                                    <td><span class="rarity-badge very-rare">Very Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CISM (Info Security Management)</strong></td>
+                                    <td>~46,000 globally</td>
+                                    <td>0.07%</td>
+                                    <td><span class="rarity-badge very-rare">Very Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PMI-ACP (Agile Project Management)</strong></td>
+                                    <td>~59,400 globally</td>
+                                    <td>0.096%</td>
+                                    <td><span class="rarity-badge rare">Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CISA (IT Audit)</strong></td>
+                                    <td>~151,000 globally</td>
+                                    <td>0.24%</td>
+                                    <td><span class="rarity-badge rare">Rare</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PRINCE2 (Project Management)</strong></td>
+                                    <td>~1,000,000+ globally</td>
+                                    <td>1.6%</td>
+                                    <td><span class="rarity-badge uncommon">Uncommon</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PMP (Project Management)</strong></td>
+                                    <td>~1,454,000 globally</td>
+                                    <td>2.3%</td>
+                                    <td><span class="rarity-badge uncommon">Uncommon</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ITIL (IT Service Management)</strong></td>
+                                    <td>~2,000,000+ globally</td>
+                                    <td>3.2%</td>
+                                    <td><span class="rarity-badge common">Common</span></td>
+                                    <td><i class="fas fa-check-circle text-success"></i> CERTIFIED</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="highlight mt-8 p-6 bg-surface-grad rounded">
+                            <h4 class="text-primary mb-4">🎯 Combined Rarity Assessment</h4>
+                            <p><strong>The probability of any one person holding ALL of these credentials is astronomically low.</strong> Most ICT practitioners pursue one or two certification tracks at most. Conservatively, if we consider just a subset of his qualifications - say, CISA + PMP + RCDD - even that combination alone would likely put an individual in the top 0.01% of the global ICT talent pool.</p>
+                            <p class="mt-4"><strong>Including his full portfolio, Mr. Doğan is arguably one in a hundred-thousand (or rarer) among ICT professionals globally, i.e. within the top 0.001% by breadth and level of certification.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Positioning Visualization -->
+            <section class="section bg-surface">
+                <div class="container">
+                    <h2 class="section-title">Global Professional Standing Visualization</h2>
+                    
+                    <div class="visual-pyramid">
+                        <h3 class="text-primary mb-8">ICT Professional Hierarchy by Certification Breadth</h3>
+                        <div class="pyramid">
+                            <div class="pyramid-level">Mr. Doğan (Top 0.001%)</div>
+                            <div class="pyramid-level">Multi-Domain Certified (0.01%)</div>
+                            <div class="pyramid-level">Advanced Single Domain (0.1%)</div>
+                            <div class="pyramid-level">Professional Certified (5%)</div>
+                            <div class="pyramid-level">Basic Certified (15%)</div>
+                            <div class="pyramid-level">Non-Certified Professionals (80%)</div>
+                        </div>
+                        <p class="text-light italic mt-4">
+                            Approximate distribution of 62 million global ICT professionals by certification level
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Regional Market Analysis -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Regional Market Standing</h2>
+                    
+                    <div class="country-comparison">
+                        <!-- Saudi Arabia -->
+                        <div class="country-card">
+                            <div class="country-flag">🇸🇦</div>
+                            <h3 class="country-title">Saudi Arabia</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <span class="stat-value">354K</span>
+                                    <div class="stat-label">ICT Workforce (2023)</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">38,600</span>
+                                    <div class="stat-label">PMP Certified (11%)</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">~750</span>
+                                    <div class="stat-label">ISACA Riyadh Members</div>
+                                </div>
+                            </div>
+                            <div class="highlight mt-4 p-4 bg-primary text-white rounded">
+                                <strong>Mr. Doğan's Standing:</strong><br>
+                                Estimated 1 of ~5 people in KSA with this certification portfolio
+                            </div>
+                        </div>
+
+                        <!-- Global Context -->
+                        <div class="country-card">
+                            <div class="country-flag">🌍</div>
+                            <h3 class="country-title">Global ICT Market</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <span class="stat-value">62M</span>
+                                    <div class="stat-label">Global ICT Professionals</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">1.45M</span>
+                                    <div class="stat-label">PMP Certified Globally</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">5,350</span>
+                                    <div class="stat-label">PgMP Certified Globally</div>
+                                </div>
+                            </div>
+                            <div class="highlight mt-4 p-4 bg-accent text-white rounded">
+                                <strong>Mr. Doğan's Standing:</strong><br>
+                                Top 0.001% globally - One in 100,000+ professionals
+                            </div>
+                        </div>
+
+                        <!-- Turkey -->
+                        <div class="country-card">
+                            <div class="country-flag">🇹🇷</div>
+                            <h3 class="country-title">Turkey</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <span class="stat-value">213K</span>
+                                    <div class="stat-label">ICT Workforce</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">3,961</span>
+                                    <div class="stat-label">PMP Certified</div>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value">Lower</span>
+                                    <div class="stat-label">Certification Penetration</div>
+                                </div>
+                            </div>
+                            <div class="highlight mt-4 p-4 bg-danger text-white rounded">
+                                <strong>Mr. Doğan's Standing:</strong><br>
+                                Possibly singular (1 of 1) with this combination
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Conclusion</h2>
+                    
+                    <div class="conclusion">
+                        <h3 class="text-primary mb-6">🏆 Elite Professional Standing</h3>
+                        <p class="fs-11 lh-18 mb-6">
+                            Mr. Ahmet Doğan's portfolio of certifications (CISA®, CISM®, CRISC®, PgMP®, PMP®, PMI-ACP®, PRINCE2®, ITIL® 4, RCDD®, ATD, AOS, etc.) and his advanced academic achievements make him a <strong>stand-out leader in the ICT field internationally and within the Middle East and Turkey</strong>.
+                        </p>
+
+                        <p class="fs-11 lh-18 mb-6">
+                            He operates at a level attained by only the <strong>top few in ten-thousand professionals worldwide</strong>, blending technical mastery with managerial and strategic acumen.
+                        </p>
+
+                        <div class="bg-surface-card p-6 rounded my-8">
+                            <h4 class="text-primary mb-4">💼 Value Proposition for Organizations</h4>
+                            <ul class="pl-6">
+                                <li><strong>Risk Management & Compliance:</strong> Can govern IT risks, conduct audits, and ensure regulatory compliance</li>
+                                <li><strong>Program Leadership:</strong> Capable of managing large-scale, complex programs with multiple stakeholders</li>
+                                <li><strong>Service Excellence:</strong> Expertise in IT service management and operational excellence</li>
+                                <li><strong>Infrastructure Design:</strong> Advanced knowledge in data center and network infrastructure</li>
+                                <li><strong>Strategic Vision:</strong> Doctoral-level research training implies strong analytical and leadership capabilities</li>
+                            </ul>
+                        </div>
+
+                        <p class="fs-11 lh-18">
+                            In both Saudi Arabia and Turkey, where digital transformation is a priority, having a professional of Mr. Doğan's caliber is a <strong>significant competitive advantage</strong>. He embodies a rare blend of global best practices and local understanding, potentially serving as a bridge between international technological standards and regional implementation.
+                        </p>
+                    </div>
+
+                    <div class="card text-center mt-12">
+                        <h3 class="text-primary mb-4">🎯 Final Assessment</h3>
+                        <p class="fs-125 fw-600 text-primary">
+                            Mr. Doğan's professional standing can be described as <strong>elite on a global scale and near-unique in the regional context</strong>. This benchmarking underscores the value he offers: a rare thought leader and practitioner in the ICT domain, whose qualifications place him in the top tier of professionals capable of driving innovation, governance, and excellence in the industry.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section class="section bg-surface">
+                <div class="container">
+                    <div class="references">
+                        <h3>📚 References & Data Sources</h3>
+                        <ul>
+                            <li>ISACA. (2025). Certified Information Systems Auditor (CISA) - Overview. (Over 151,000 professionals hold this certification)</li>
+                            <li>Project Management Institute (PMI). (2023). PMI Fact File (Dec 2023). (Data on PMP, PgMP, PMI-ACP holders globally)</li>
+                            <li>BICSI. (2022). RCDD Credential Overview. (Estimate of 15,000+ active RCDD holders worldwide)</li>
+                            <li>Uptime Institute. (2010 & 2020s). Accredited Tier Designer / Specialist Announcements</li>
+                            <li>Communications, Space & Technology Comm. (Saudi Arabia CST). (2023). Saudi ICT Sector Metrics. (354k ICT workers in KSA, 2023)</li>
+                            <li>Invest in Türkiye. (2024). ICT Sector in Turkey - Overview. (213k+ ICT sector employees in Turkey)</li>
+                            <li>Y. Tounsi. (2024). Number of PMP Holders by Country. (PMI registry data showing 38,689 in Saudi Arabia; 3,961 in Turkey)</li>
+                            <li>ISACA Riyadh Chapter. (2021). About Us. (Chapter membership ~750)</li>
+                            <li>Chapagai, A., & Dhakal, S. (2023). Information and Communication Technology (ICT) in the Modern World. (Statistical overview of global ICT workforce)</li>
+                            <li>CEDEFOP. (2023). ICT professionals: skills opportunities and challenges. (European ICT workforce analysis)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            // Theme toggle functionality
+            function initTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'auto';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+
+            // Initialize theme on load
+            document.addEventListener('DOMContentLoaded', initTheme);
+                        <li>Invest in Türkiye. (2024). ICT Sector in Turkey - Overview. (213k+ ICT sector employees in Turkey)</li>
+                        <li>Y. Tounsi. (2024). Number of PMP Holders by Country. (PMI registry data showing 38,689 in Saudi Arabia; 3,961 in Turkey)</li>
+                        <li>ISACA Riyadh Chapter. (2021). About Us. (Chapter membership ~750)</li>
+                        <li>Chapagai, A., & Dhakal, S. (2023). Information and Communication Technology (ICT) in the Modern World. (Statistical overview of global ICT workforce)</li>
+                        <li>CEDEFOP. (2023). ICT professionals: skills opportunities and challenges. (European ICT workforce analysis)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'auto';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // Initialize theme on load
+        document.addEventListener('DOMContentLoaded', initTheme);
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animations to elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.card, .stat-card, .country-card, .pyramid-level');
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

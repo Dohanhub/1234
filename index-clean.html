@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Dogan - ICT Executive & Digital Transformation Leader</title>
+    <meta name="description" content="Ahmet Dogan - Visionary ICT leader with 20+ years of experience driving large-scale digital transformation and infrastructure projects across the Middle East (Saudi Arabia, Kuwait, Turkey, Egypt).">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💼</text></svg>" type="image/svg+xml">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        :root {
+            /* Color Palette */
+            --primary-color: #0a2540; /* Dark Blue */
+            --secondary-color: #00a8e8; /* Bright Blue */
+            --accent-color: #f59e0b; /* Amber */
+            --success-color: #10b981; /* Emerald */
+            --text-color: #0f172a; /* Slate-900 */
+            --text-light: #64748b; /* Slate-500 */
+            --bg-color: #f8fafc; /* Slate-50 */
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-heavy: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-light: rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .hero-badge i {
+            margin-right: 0.5rem;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 24px;
+            box-shadow: var(--shadow-heavy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transform: perspective(1000px) rotateY(-5deg);
+            overflow: hidden;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d3154;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .key-strengths {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .strength-item {
+            background-color: rgba(10, 37, 64, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .about-stats {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: calc(50% - 2rem);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .certification-category {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .certification-category h3 {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .certification-category h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .certification-list {
+            list-style: none;
+        }
+        
+        .certification-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .certification-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-logo p {
+            margin-top: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-newsletter h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-newsletter p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .ai-assistant:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .ai-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content,
+            .about-content,
+            .contact-container,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 3rem);
+                left: 3rem !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                z-index: 101;
+                box-shadow: var(--shadow-heavy);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Ahmet Dogan</a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <div class="hero-badge">
+                        <i class="fas fa-check-circle"></i>
+                        ICT Executive • Digital Transformation Leader
+                    </div>
+                    <h1>Ahmet Dogan</h1>
+                    <p>Visionary ICT leader with 20+ years of experience driving large-scale digital transformation and infrastructure projects across the Middle East (Saudi Arabia, Kuwait, Turkey, Egypt). Proven track record of turning around underperforming operations and accelerating growth. Saudi Premium Residency holder.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn btn-primary">Contact Me</a>
+                        <a href="#experience" class="btn btn-outline">View Experience</a>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <img src="profole data/ahmet-dogan-profile.jpg" alt="Ahmet Dogan" onerror="this.src='https://via.placeholder.com/400x400?text=Ahmet+Dogan'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Professional Background & Expertise</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>20+ Years of ICT Leadership Excellence</h3>
+                    <p>As a highly certified ICT executive (MBA, PgMP, PMP, CISM, and others), I combine deep technical expertise with strategic business acumen. I've led nationwide sales and P&L management, executed smart city and cloud initiatives aligned with Vision 2030 goals, and delivered up to 5× profit increase and $125M+ in new contracts within a year.</p>
+                    <p>Currently pursuing a Doctor of Business Administration (DBA) with specialization in Cybersecurity from the University of Northampton, UK (expected 2025).</p>
+                    <div class="key-strengths">
+                        <div class="strength-item">Digital Transformation</div>
+                        <div class="strength-item">ICT Infrastructure</div>
+                        <div class="strength-item">Smart Cities</div>
+                        <div class="strength-item">Cybersecurity</div>
+                        <div class="strength-item">Cloud Solutions</div>
+                        <div class="strength-item">IoT Implementation</div>
+                        <div class="strength-item">P&L Management</div>
+                        <div class="strength-item">Program/Project Management</div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div>
+                        <div class="stat-number">$125M+</div>
+                        <p>In new contracts secured in 2024</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <div class="stat-number">5×</div>
+                        <p>Profit increase year-over-year</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section" style="background-color: #f0f9ff;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">Career Journey & Achievements</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 2024 - Present</div>
+                        <h3 class="timeline-title">Sales Director</h3>
+                        <div class="timeline-company">Abdullah Fouad Group - InfoTech Division, Saudi Arabia</div>
+                        <p>Leading nationwide ICT sales and operations across all regions, with full P&L accountability. Driving revenue optimization in government, telecom, and enterprise sectors.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan 2024 - Dec 2024</div>
+                        <h3 class="timeline-title">Regional Manager, Western Region</h3>
+                        <div class="timeline-company">Abdullah Fouad Group - InfoTech Division, Saudi Arabia</div>
+                        <p>Turnaround leader for an underperforming region. Achieved record results in 2024: SAR 125M in new contracts, SAR 110M in collections, making Western Region the top-performing unit in the company.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sep 2022 - Dec 2023</div>
+                        <h3 class="timeline-title">Senior Product Manager, Oracle Solutions</h3>
+                        <div class="timeline-company">Ingram Micro KSA, Riyadh</div>
+                        <p>Managed the Oracle solutions portfolio nationwide. Developed and executed go-to-market strategies that kept Ingram Micro as Oracle's #1 distributor in KSA.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan 2017 - Sep 2022</div>
+                        <h3 class="timeline-title">General Manager, ICT Division</h3>
+                        <div class="timeline-company">Gulf Group Holding, Kuwait/Saudi</div>
+                        <p>Launched and built a new ICT business unit from ground up. Grew annual revenue to ~$18M with 50+ projects in data centers, cybersecurity, and telecom. Hired and led a team of 130+.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Certifications</h2>
+                <p class="section-subtitle">Industry-Recognized Credentials</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="certification-category">
+                    <h3><i class="fas fa-project-diagram"></i> Project Management</h3>
+                    <ul class="certification-list">
+                        <li>Program Management Professional (PgMP®)</li>
+                        <li>Project Management Professional (PMP®)</li>
+                        <li>PMI Agile Certified Practitioner (PMI-ACP)</li>
+                        <li>PRINCE2® Practitioner</li>
+                    </ul>
+                </div>
+                <div class="certification-category">
+                    <h3><i class="fas fa-shield-alt"></i> Security & Governance</h3>
+                    <ul class="certification-list">
+                        <li>Certified Information Systems Auditor (CISA®)</li>
+                        <li>Certified Information Security Manager (CISM®)</li>
+                        <li>Certified in Risk and Information Systems Control (CRISC®)</li>
+                        <li>Stanford Advanced Computer Security</li>
+                    </ul>
+                </div>
+                <div class="certification-category">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <ul class="certification-list">
+                        <li>DBA Candidate - University of Northampton (2025)</li>
+                        <li>MBA - University of Leicester, UK (2021)</li>
+                        <li>Chartered Manager (CMgr MCMI)</li>
+                        <li>B.Eng., Electronics & Communications Engineering</li>
+                    </ul>
+                </div>
+                <div class="certification-category">
+                    <h3><i class="fas fa-server"></i> Technical</h3>
+                    <ul class="certification-list">
+                        <li>Registered Communications Distribution Designer (RCDD)</li>
+                        <li>Accredited Tier Designer (ATD)</li>
+                        <li>ITIL® 4 Foundation</li>
+                        <li>HCIP-Data Center Facility</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background-color: #f0f9ff;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's Connect for Digital Transformation Opportunities</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>ahmet.dogan@doganhub.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+966-500-666-084</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p><a href="https://linkedin.com/in/ahmed-elgazzar-ict" target="_blank">linkedin.com/in/ahmed-elgazzar-ict</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/ahmed-elgazzar-ict" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#">Ahmet Dogan</a>
+                    <p>ICT Executive & Digital Transformation Leader with 20+ years of experience across KSA, Kuwait, Turkey, and Egypt.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to my newsletter for digital transformation insights</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ahmet Dogan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <div class="ai-pulse"></div>
+        <span>Ask Ahmet AI</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // AI Assistant
+        document.querySelector('.ai-assistant').addEventListener('click', function() {
+            alert('AI Assistant feature coming soon!');
+        });
+    </script>
+</body>
+</html>

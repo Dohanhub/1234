@@ -1,0 +1,86 @@
+<!-- Integration Example for AhmetDogan.info -->
+<!-- Add this to the bottom of your index.html file -->
+
+<!-- 1. Agent Configuration -->
+<script>
+  // Domain-specific configuration for the agent
+  window.agentConfig = {
+    domain: 'ahmetdogan',
+    theme: 'professional',
+    welcomeMessage: 'Welcome to Ahmet Dogan\'s professional profile. I can help you learn more about Ahmet\'s expertise, experience, and background. How can I assist you?',
+    suggestedQuestions: [
+      'What is Ahmet\'s professional background?',
+      'What certifications does Ahmet have?',
+      'How can I connect with Ahmet?'
+    ],
+    contextData: {
+      currentSection: document.querySelector('meta[name="section"]')?.content || 'home',
+      userLanguage: document.documentElement.lang || 'en'
+    }
+  };
+</script>
+
+<!-- 2. Agent Embed Script -->
+<script src="https://agent.doganhub.com/embed/widget.js"
+        data-origin="https://agent.doganhub.com"
+        data-token="YOUR_SECURE_TOKEN"
+        data-position="bottom-right"></script>
+
+<!-- 3. Calendar Integration -->
+<script>
+  // Example of calendar availability integration with the agent
+  function checkAvailability(date) {
+    // This would normally check against a real calendar API
+    // For demo purposes, we'll simulate some busy days
+    const busyDates = ['2025-08-15', '2025-08-16', '2025-08-20', '2025-08-21'];
+    const dateString = date.toISOString().split('T')[0];
+    
+    const isAvailable = !busyDates.includes(dateString);
+    
+    // Inform the agent of availability
+    fetch('https://agent.doganhub.com/api/chat/admin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_SECURE_TOKEN'
+      },
+      body: JSON.stringify({
+        user_id: 'calendar_system',
+        text: `update_availability:${dateString}:${isAvailable}`,
+        context: {
+          system: 'calendar',
+          action: 'availability_update'
+        }
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.error('Error updating availability:', error));
+    
+    return isAvailable;
+  }
+  
+  // Example: checkAvailability(new Date('2025-08-18'));
+</script>
+
+<!-- 4. Expertise Highlighting -->
+<script>
+  // Highlight expertise areas based on user queries to the agent
+  window.addEventListener('message', function(event) {
+    // Only process messages from the agent iframe
+    if (event.origin !== 'https://agent.doganhub.com') return;
+    
+    const data = event.data;
+    if (data.type === 'expertise_query') {
+      const expertise = data.expertise;
+      
+      // Highlight the relevant expertise section
+      const expertiseElement = document.querySelector(`[data-expertise="${expertise}"]`);
+      if (expertiseElement) {
+        expertiseElement.classList.add('highlight-expertise');
+        
+        // Scroll to the expertise section
+        expertiseElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+</script>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Doğan - ICT Executive & Digital Transformation Leader</title>
+    <style>
+        /* Original Snigel.com inspired design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Header Navigation */
+        .header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .get-in-touch-btn {
+            background: linear-gradient(45deg, #10b981, #06b6d4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .get-in-touch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button::after {
+            content: '→';
+            font-size: 18px;
+        }
+
+        /* Hero Illustration */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-illustration {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 80px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 80px 0;
+        }
+
+        .expertise-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .expertise-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .expertise-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .expertise-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Ahmet Doğan</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="get-in-touch-btn">Get in touch</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Unleash the Power of Digital Transformation for Unmatched Business Growth</h1>
+                <p>Get a fully customized ICT strategy, dedicated account management and best-in-class AI optimization technology with 20+ years of proven expertise.</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+            <div class="hero-visual">
+                <div class="tech-illustration">
+                    <div class="tech-icon">🚀</div>
+                </div>
+                <div class="floating-element">
+                    <strong>Vision 2030</strong><br>
+                    <small>NEOM Smart City</small>
+                </div>
+                <div class="floating-element">
+                    <strong>$125M+</strong><br>
+                    <small>Contracts Secured</small>
+                </div>
+                <div class="floating-element">
+                    <strong>5× Growth</strong><br>
+                    <small>Profit Increase</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>$125M+</h3>
+                    <p>Contracts Secured</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5×</h3>
+                    <p>Profit Increase</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>130+</h3>
+                    <p>Team Members Led</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="expertise-container">
+            <div class="section-title">
+                <h2>Elite ICT Leadership Expertise</h2>
+                <p>Comprehensive digital transformation solutions across multiple domains</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏙️</div>
+                    <h3>Smart Cities & Vision 2030</h3>
+                    <p>Led NEOM Smart City Tier III Data Center delivery (SAR 21.9M). Expert in IoT/Cloud solutions aligned with Vision 2030 goals.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🛡️</div>
+                    <h3>Cybersecurity & Risk</h3>
+                    <p>CISA, CISM, CRISC certified. Ensuring NCA compliance and cybersecurity standards for government and enterprise projects.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏢</div>
+                    <h3>Data Center Infrastructure</h3>
+                    <p>Tier III+ Data Center design and delivery. RCDD, ATD certified. Uptime Institute certified projects including NEOM Telco Park.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
+                    <h3>Program Management</h3>
+                    <p>PgMP, PMP, PMI-ACP certified. Led 130+ teams, established PMOs, delivered $18M/year ICT division from scratch.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🌐</div>
+                    <h3>Telecom & Networks</h3>
+                    <p>Electronics & Communications Engineering background. Nationwide fiber and mobile network expansions, 5G implementations.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📈</div>
+                    <h3>Digital Transformation</h3>
+                    <p>MBA in Marketing, DBA candidate in Cybersecurity. Turned underperforming regions to #1 nationwide with 5× profit increase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <p>&copy; 2025 Ahmet Doğan. ICT Executive & Digital Transformation Leader</p>
+            <div class="contact-info">
+                <a href="mailto:ahmet.dogan@doganhub.com">ahmet.dogan@doganhub.com</a>
+                <a href="tel:+966500666084">+966-500-666-084</a>
+                <a href="https://linkedin.com/in/ahmed-elgazzar-ict">LinkedIn Profile</a>
+                <span>Riyadh, Saudi Arabia</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
